@@ -18,8 +18,8 @@ while read -r f; do
     echo "skip (not in the working tree): rime/$f" >&2
     continue
   fi
-  adb shell "mkdir -p '$DEV/$(dirname "$f")'"
-  adb push "$ROOT/rime/$f" "$DEV/$f"
+  adb shell "mkdir -p '$DEV/$(dirname "$f")'" </dev/null
+  adb push "$ROOT/rime/$f" "$DEV/$f" </dev/null
 done < "$LIST"
 
 echo

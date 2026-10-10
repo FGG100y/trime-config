@@ -15,7 +15,7 @@ LIST="$ROOT/script/files.txt"
 while read -r f; do
   [ -z "$f" ] && continue
   mkdir -p "$ROOT/rime/$(dirname "$f")"
-  adb pull -a "$DEV/$f" "$ROOT/rime/$f" || rm -f "$ROOT/rime/$f"
+  adb pull -a "$DEV/$f" "$ROOT/rime/$f" </dev/null || rm -f "$ROOT/rime/$f"
 done < "$LIST"
 
 echo

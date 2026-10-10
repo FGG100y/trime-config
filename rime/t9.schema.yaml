@@ -44,3 +44,12 @@ speller:
 translator:
   dictionary: luna_pinyin
   prism: t9
+  # 让 script_translator 把候选的原始拼音拼写挂到候选的 comment 上，
+  # 再由 lua/t9_preedit.lua 搬进 preedit，输入框就会显示拼音而非数字。
+  spelling_hints: 100
+
+engine:
+  filters/+:
+    # 注意开头那个 `*`：librime-lua 只有在带 `*` 时才会 require("t9_preedit")，
+    # 否则只去找全局函数 t9_preedit，会因 func 为 nil 而报错、清空候选。
+    - lua_filter@*t9_preedit

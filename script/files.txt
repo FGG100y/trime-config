@@ -1,6 +1,7 @@
 default.custom.yaml
 luna_pinyin.custom.yaml
 t9.schema.yaml
+lua/t9_preedit.lua
 custom_phrase.txt
 trime.custom.yaml
 tongwenfeng.trime.custom.yaml

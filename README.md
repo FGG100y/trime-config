@@ -28,6 +28,8 @@
 - `↵` 在左下角（左手拇指）。
 - 空格缩短，`，` / `符` 分列两侧。
 - `中/英` 在右下角：点按切西文全键盘，长按弹方案菜单。
+- 输入中文时，候选上方显示的是解析出的**拼音**（如 `bie'ji`），而不是按下的数字
+  （靠 `translator/spelling_hints` + `lua/t9_preedit.lua`，见下）。
 
 **西文全键盘 `t9_en`**（由九宫格的「中/英」进入）
 
@@ -53,6 +55,8 @@ q w e r t y u i o p
 │   ├── default.custom.yaml             # schema_list：加入 melt_eng 与 t9
 │   ├── luna_pinyin.custom.yaml         # 把 melt_eng 挂成朙月的次翻译器（中英混输）
 │   ├── t9.schema.yaml                  # 朙月·九宫格方案（复用朙月词库）
+│   ├── lua/
+│   │   └── t9_preedit.lua              # 九宫格：候选上方显示拼音而非数字
 │   ├── custom_phrase.example.txt       # 自定义短语模板（复制成 custom_phrase.txt 填内容；后者已 gitignore）
 │   ├── trime.custom.yaml               # 「預設」主题补丁：t9 / t9_en 键盘
 │   ├── tongwenfeng.trime.custom.yaml   # 「标准」主题补丁：同上

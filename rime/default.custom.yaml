@@ -1,0 +1,10 @@
+patch:
+  schema_list:
+    - schema: luna_pinyin
+    - schema: luna_pinyin_simp
+    # 英文方案（melt_eng）。加进 schema_list 有两层作用：
+    # 1. 部署时会编译 melt_eng 词典，供 luna_pinyin 的次翻译器使用；
+    # 2. 它同时成为一个可切换的独立英文方案。
+    - schema: melt_eng
+    # 九宫格方案（键盘 id 同名 t9，见 trime.custom.yaml）
+    - schema: t9

@@ -1,0 +1,12 @@
+# 中英混输：把英文方案 melt_eng 作为朙月拼音的次翻译器挂进来
+# 做法参考 rime-ice 的 rime_ice.schema.yaml（table_translator@melt_eng）
+patch:
+  engine/translators/+:
+    - table_translator@melt_eng
+  melt_eng:
+    dictionary: melt_eng
+    enable_sentence: false
+    enable_user_dict: false
+    initial_quality: 1.1
+    comment_format:
+      - xform/.*//

@@ -1,0 +1,81 @@
+patch:
+  # === 中/英 切换：用“切键盘”而不是 Mode_switch ===
+  # Mode_switch 只切换 rime 的 ascii_mode，键盘布局不变；
+  # 九宫格在 ascii 模式下数字键会原样上屏 -> 看起来像数字键盘。
+  # 所以这里改成切到独立的西文全键盘 t9_en。
+  preset_keys/Keyboard_t9_en: {label: 中/英, send: Eisu_toggle, select: t9_en}
+  preset_keys/Keyboard_t9_cn: {label: 中/英, send: Eisu_toggle, select: t9}
+
+  # === 九宫格（中文）===
+  # id 必须与方案 id 相同（t9），Trime 才会按方案自动选中：
+  # KeyboardWindow.smartMatchKeyboard() -> if (presetKeyboardIds.contains(schemaId)) return schemaId
+  preset_keyboards/t9:
+    name: 九宫格
+    ascii_mode: 0
+    reset_ascii_mode: true     # 切到本键盘时强制回中文
+    width: 25          # 每键重量；100/25 = 4 列
+    columns: 4
+    height: 55
+    keyboard_height: 280
+    lock: true
+    keys:
+      - {click: ',', long_click: Keyboard_symbols, label: '，'}
+      - {click: '2', label: ABC}
+      - {click: '3', label: DEF}
+      - {click: Keyboard_symbols, label: 符}
+      - {click: '4', label: GHI}
+      - {click: '5', label: JKL}
+      - {click: '6', label: MNO}
+      - {click: "'", label: 分词}
+      - {click: '7', label: PQRS}
+      - {click: '8', label: TUV}
+      - {click: '9', label: WXYZ}
+      - {click: BackSpace, label: ⌫}
+      - {click: Return, composing: Return1, long_click: CommitComment, label: ↵}   # 回车放到左下角
+      - {click: space, width: 50, label: 空格}
+      - {click: Keyboard_t9_en, long_click: Menu, label: 中/英}   # 去西文全键盘，长按菜单
+
+  # === 西文全键盘（由九宫格的“中/英”键进入）===
+  preset_keyboards/t9_en:
+    name: 全键盘（西文）
+    ascii_mode: 1
+    reset_ascii_mode: true     # 切到本键盘时强制西文
+    width: 10
+    height: 44
+    lock: true
+    keys:
+      - {click: q, long_click: '1'}
+      - {click: w, long_click: '2'}
+      - {click: e, long_click: '3'}
+      - {click: r, long_click: '4'}
+      - {click: t, long_click: '5'}
+      - {click: y, long_click: '6'}
+      - {click: u, long_click: '7'}
+      - {click: i, long_click: '8'}
+      - {click: o, long_click: '9'}
+      - {click: p, long_click: '0'}
+      - {width: 5}
+      - {click: a, long_click: select_all}
+      - {click: s, long_click: '@'}
+      - {click: d, long_click: '#'}
+      - {click: f, long_click: '$'}
+      - {click: g, long_click: '%'}
+      - {click: h, long_click: '!'}
+      - {click: j, long_click: '&'}
+      - {click: k, long_click: '*'}
+      - {click: l, long_click: '(){Left}'}
+      - {width: 5}
+      - {click: Shift_L, width: 15}
+      - {click: z, long_click: '`'}
+      - {click: x, long_click: cut}
+      - {click: c, long_click: copy}
+      - {click: v, long_click: paste}
+      - {click: b, long_click: '~'}
+      - {click: n, long_click: ';'}
+      - {click: m, long_click: '?'}
+      - {click: BackSpace, width: 15}
+      - {click: Return, width: 15}                                        # 回车放左下角
+      - {click: ',', width: 15, label: ','}                               # 空格左边：逗号
+      - {click: space, width: 40}
+      - {click: '.', width: 15, label: '.'}                               # 空格右边：句号
+      - {click: Keyboard_t9_cn, long_click: Menu, width: 15, label: 中/英}   # 回九宫格，长按出菜单

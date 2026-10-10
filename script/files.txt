@@ -1,0 +1,10 @@
+default.custom.yaml
+luna_pinyin.custom.yaml
+t9.schema.yaml
+custom_phrase.txt
+trime.custom.yaml
+tongwenfeng.trime.custom.yaml
+melt_eng.schema.yaml
+melt_eng.dict.yaml
+en_dicts/en.dict.yaml
+en_dicts/en_ext.dict.yaml

@@ -1,0 +1,46 @@
+# encoding: utf-8
+# 朙月拼音（简化字）+ 九宫格数字拼写
+#
+# 复用朙月拼音词库，只在 speller 里把拼音音节额外派生成 T9 数字串。
+# 键盘侧由主题里的 preset_keyboards/t9 负责（键发 1-9 数字）。
+# 参考 rime-ice 的 t9.schema.yaml，但不需要 rime-ice 的词库/脚本。
+__include: luna_pinyin_simp.schema:/
+
+schema:
+  schema_id: t9
+  name: 朙月·九宫格
+  version: "1.0"
+  description: |
+    复用朙月拼音词库，九宫格数字拼写（2=abc 3=def 4=ghi 5=jkl 6=mno 7=pqrs 8=tuv 9=wxyz）。
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba23456789
+  delimiter: " '"
+  algebra:
+    # 简拼
+    - abbrev/^([a-z]).+$/$1/
+    - abbrev/^([zcs]h).+$/$1/
+    # 容错（来自朙月 pinyin.yaml）
+    - derive/^([nl])ve$/$1ue/
+    - derive/^([jqxy])u/$1v/
+    - derive/un$/uen/
+    - derive/ui$/uei/
+    - derive/iu$/iou/
+    - derive/([aeiou])ng$/$1gn/
+    - derive/([dtngkhrzcs])o(u|ng)$/$1o/
+    - derive/ong$/on/
+    - derive/ao$/oa/
+    - derive/([iu])a(o|ng?)$/a$1$2/
+    # 九宫格：必须按数字从小到大，librime 会链式派生
+    - derive/[abc]/2/
+    - derive/[def]/3/
+    - derive/[hgi]/4/
+    - derive/[jkl]/5/
+    - derive/[omn]/6/
+    - derive/[pqrs]/7/
+    - derive/[tuv]/8/
+    - derive/[wxyz]/9/
+
+translator:
+  dictionary: luna_pinyin
+  prism: t9

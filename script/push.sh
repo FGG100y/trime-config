@@ -14,6 +14,10 @@ LIST="$ROOT/script/files.txt"
 
 while read -r f; do
   [ -z "$f" ] && continue
+  if [ ! -f "$ROOT/rime/$f" ]; then
+    echo "skip (not in the working tree): rime/$f" >&2
+    continue
+  fi
   adb shell "mkdir -p '$DEV/$(dirname "$f")'"
   adb push "$ROOT/rime/$f" "$DEV/$f"
 done < "$LIST"

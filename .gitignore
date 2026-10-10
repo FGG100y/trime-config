@@ -19,5 +19,8 @@ soundeffect/
 .DS_Store
 *~
 
+# Local snapshots of app-private data (collection.db / clipboard.db) — personal
+backup/
+
 # Real personal phrases (the tracked template is custom_phrase.example.txt)
 rime/custom_phrase.txt

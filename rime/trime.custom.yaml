@@ -27,7 +27,7 @@ patch:
       - {click: '4', label: GHI, swipe_down: {commit: '4', label: '4'}, hint: '4'}
       - {click: '5', label: JKL, swipe_down: {commit: '5', label: '5'}, hint: '5'}
       - {click: '6', label: MNO, swipe_down: {commit: '6', label: '6'}, hint: '6'}
-      - {click: ':', swipe_up: "\\", swipe_down: {commit: '_', label: '_'}, hint: '_', label: '：', label_symbol: '、'}   # 冒号 / 顿号 / 下划线（下划线绕过Rime，否则会变——）
+      - {click: '@', swipe_up: {commit: '_', label: '_'}, swipe_down: ':', hint: '：', label: '@', label_symbol: '_'}   # @ / 下划线（上滑）/ 冒号（下滑；下划线绕过Rime，否则会变——）
       - {click: '7', label: PQRS, swipe_down: {commit: '7', label: '7'}, hint: '7'}
       - {click: '8', label: TUV, swipe_down: {commit: '8', label: '8'}, hint: '8'}
       - {click: '9', label: WXYZ, swipe_down: {commit: '9', label: '9'}, hint: '9'}

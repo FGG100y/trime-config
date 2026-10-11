@@ -31,7 +31,7 @@ patch:
       - {click: '7', label: PQRS, swipe_down: {commit: '7', label: '7'}, hint: '7'}
       - {click: '8', label: TUV, swipe_down: {commit: '8', label: '8'}, hint: '8'}
       - {click: '9', label: WXYZ, swipe_down: {commit: '9', label: '9'}, hint: '9'}
-      - {click: BackSpace, swipe_up: select_all, hint: '全选', key_hint_offset_x: 34, label: ⌫}
+      - {click: BackSpace, swipe_up: select_all, label_symbol: '全选', label: ⌫}
       - {click: Return, composing: Return1, long_click: CommitComment, label: ↵}   # 回车放到左下角
       - {click: space, width: 50, swipe_down: {commit: '0', label: '0'}, hint: '0', key_hint_offset_x: 88, label: 空格}
       - {click: Menu, swipe_up: '?', swipe_down: '!', label_symbol: '？！'}   # 方案菜单；上滑 ？　下滑 ！

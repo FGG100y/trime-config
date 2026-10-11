@@ -1,9 +1,8 @@
 patch:
-  # === 中/英 切换：用“切键盘”而不是 Mode_switch ===
-  # Mode_switch 只切换 rime 的 ascii_mode，键盘布局不变；
-  # 九宫格在 ascii 模式下数字键会原样上屏 -> 看起来像数字键盘。
-  # 所以这里改成切到独立的西文全键盘 t9_en。
-  preset_keys/Keyboard_t9_en: {label: 中/英, send: Eisu_toggle, select: t9_en}
+  # === 中/英 切换 ===
+  # 常驻栏的 中/En 按钮翻 rime 的 ascii_mode；App 会按键盘声明的 ascii_keyboard
+  # 自动切到西文全键盘 t9_en（见 preset_keyboards/t9 的 ascii_keyboard）。
+  # Keyboard_t9_cn 留给 t9_en 自带的「中/英」键。
   preset_keys/Keyboard_t9_cn: {label: 中/英, send: Eisu_toggle, select: t9}
 
   # === 九宫格（中文）===
@@ -13,33 +12,35 @@ patch:
     name: 九宫格
     ascii_mode: 0
     reset_ascii_mode: true     # 切到本键盘时强制回中文
+    ascii_keyboard: t9_en      # 常驻栏切 ascii 时自动换到西文全键盘
     width: 25          # 每键重量；100/25 = 4 列
     columns: 4
     height: 55
     keyboard_height: 280
     lock: true
     keys:
-      - {click: ',', long_click: '.', swipe_up: '?', swipe_down: '!', label: '，', label_symbol: '。？！'}
-      - {click: '2', label: ABC, swipe_up: {commit: '2', label: '2'}}
-      - {click: '3', label: DEF, swipe_up: {commit: '3', label: '3'}}
+      - {click: ',', long_click: '.', swipe_down: {commit: '1', label: '1'}, label: '，', label_symbol: '。1'}
+      - {click: '2', label: ABC, swipe_down: {commit: '2', label: '2'}}
+      - {click: '3', label: DEF, swipe_down: {commit: '3', label: '3'}}
       - {click: Keyboard_symbols, long_click: Keyboard_number, label: 符号}   # 长按直达「数字+」键盘
-      - {click: '4', label: GHI, swipe_up: {commit: '4', label: '4'}}
-      - {click: '5', label: JKL, swipe_up: {commit: '5', label: '5'}}
-      - {click: '6', label: MNO, swipe_up: {commit: '6', label: '6'}}
+      - {click: '4', label: GHI, swipe_down: {commit: '4', label: '4'}}
+      - {click: '5', label: JKL, swipe_down: {commit: '5', label: '5'}}
+      - {click: '6', label: MNO, swipe_down: {commit: '6', label: '6'}}
       - {click: "'", label: 分词}
-      - {click: '7', label: PQRS, swipe_up: {commit: '7', label: '7'}}
-      - {click: '8', label: TUV, swipe_up: {commit: '8', label: '8'}}
-      - {click: '9', label: WXYZ, swipe_up: {commit: '9', label: '9'}}
+      - {click: '7', label: PQRS, swipe_down: {commit: '7', label: '7'}}
+      - {click: '8', label: TUV, swipe_down: {commit: '8', label: '8'}}
+      - {click: '9', label: WXYZ, swipe_down: {commit: '9', label: '9'}}
       - {click: BackSpace, label: ⌫}
       - {click: Return, composing: Return1, long_click: CommitComment, label: ↵}   # 回车放到左下角
-      - {click: space, width: 50, swipe_up: {commit: '0', label: '0'}, swipe_down: {commit: '1', label: '1'}, label: 空格}
-      - {click: Keyboard_t9_en, long_click: Menu, label: 中/英}   # 去西文全键盘，长按菜单
+      - {click: space, width: 50, swipe_down: {commit: '0', label: '0'}, label: 空格}
+      - {click: Menu, swipe_up: '?', swipe_down: '!', label_symbol: '？！'}   # 方案菜单；上滑 ？　下滑 ！
 
-  # === 西文全键盘（由九宫格的“中/英”键进入）===
+  # === 西文全键盘（常驻栏 中/En 或 t9_en 自带的键进入）===
   preset_keyboards/t9_en:
     name: 全键盘（西文）
     ascii_mode: 1
     reset_ascii_mode: true     # 切到本键盘时强制西文
+    ascii_keyboard: t9         # 切回中文时回到九宫格
     width: 10
     height: 44
     lock: true

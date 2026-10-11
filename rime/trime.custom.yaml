@@ -20,19 +20,19 @@ patch:
     lock: true
     keys:
       - {click: ',', long_click: '.', swipe_up: '?', swipe_down: '!', label: '，', label_symbol: '。？！'}
-      - {click: '2', label: ABC}
-      - {click: '3', label: DEF}
-      - {click: Keyboard_symbols, label: 符号}
-      - {click: '4', label: GHI}
-      - {click: '5', label: JKL}
-      - {click: '6', label: MNO}
+      - {click: '2', label: ABC, swipe_up: {commit: '2', label: '2'}}
+      - {click: '3', label: DEF, swipe_up: {commit: '3', label: '3'}}
+      - {click: Keyboard_symbols, long_click: Keyboard_number, label: 符号}   # 长按直达「数字+」键盘
+      - {click: '4', label: GHI, swipe_up: {commit: '4', label: '4'}}
+      - {click: '5', label: JKL, swipe_up: {commit: '5', label: '5'}}
+      - {click: '6', label: MNO, swipe_up: {commit: '6', label: '6'}}
       - {click: "'", label: 分词}
-      - {click: '7', label: PQRS}
-      - {click: '8', label: TUV}
-      - {click: '9', label: WXYZ}
+      - {click: '7', label: PQRS, swipe_up: {commit: '7', label: '7'}}
+      - {click: '8', label: TUV, swipe_up: {commit: '8', label: '8'}}
+      - {click: '9', label: WXYZ, swipe_up: {commit: '9', label: '9'}}
       - {click: BackSpace, label: ⌫}
       - {click: Return, composing: Return1, long_click: CommitComment, label: ↵}   # 回车放到左下角
-      - {click: space, width: 50, label: 空格}
+      - {click: space, width: 50, swipe_up: {commit: '0', label: '0'}, swipe_down: {commit: '1', label: '1'}, label: 空格}
       - {click: Keyboard_t9_en, long_click: Menu, label: 中/英}   # 去西文全键盘，长按菜单
 
   # === 西文全键盘（由九宫格的“中/英”键进入）===

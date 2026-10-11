@@ -23,7 +23,7 @@ patch:
       - {click: ',', long_click: "'", swipe_up: '.', swipe_down: {commit: '1', label: '1'}, hint: '1', label: '，', label_symbol: '。'}
       - {click: '2', label: ABC, swipe_down: {commit: '2', label: '2'}, hint: '2'}
       - {click: '3', label: DEF, swipe_down: {commit: '3', label: '3'}, hint: '3'}
-      - {click: Keyboard_symbols, long_click: Keyboard_number, label: 符号}   # 长按直达「数字+」键盘
+      - {click: Keyboard_symbols, long_click: Keyboard_number, swipe_down: {commit: '、', label: '、'}, hint: '、', label: 符号}   # 长按直达「数字+」键盘；下滑顿号
       - {click: '4', label: GHI, swipe_down: {commit: '4', label: '4'}, hint: '4'}
       - {click: '5', label: JKL, swipe_down: {commit: '5', label: '5'}, hint: '5'}
       - {click: '6', label: MNO, swipe_down: {commit: '6', label: '6'}, hint: '6'}

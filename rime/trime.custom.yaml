@@ -27,14 +27,14 @@ patch:
       - {click: '4', label: GHI, swipe_down: {commit: '4', label: '4'}, hint: '4'}
       - {click: '5', label: JKL, swipe_down: {commit: '5', label: '5'}, hint: '5'}
       - {click: '6', label: MNO, swipe_down: {commit: '6', label: '6'}, hint: '6'}
-      - {click: ':', swipe_up: "\\", swipe_down: {commit: '_', label: '_'}, label: '：', label_symbol: '、_'}   # 冒号 / 顿号 / 下划线（下划线绕过Rime，否则会变——）
+      - {click: ':', swipe_up: "\\", swipe_down: {commit: '_', label: '_'}, hint: '_', label: '：', label_symbol: '、'}   # 冒号 / 顿号 / 下划线（下划线绕过Rime，否则会变——）
       - {click: '7', label: PQRS, swipe_down: {commit: '7', label: '7'}, hint: '7'}
       - {click: '8', label: TUV, swipe_down: {commit: '8', label: '8'}, hint: '8'}
       - {click: '9', label: WXYZ, swipe_down: {commit: '9', label: '9'}, hint: '9'}
       - {click: BackSpace, swipe_up: select_all, label_symbol: '全选', label: ⌫}
       - {click: Return, composing: Return1, long_click: CommitComment, label: ↵}   # 回车放到左下角
       - {click: space, width: 50, swipe_down: {commit: '0', label: '0'}, hint: '0', key_hint_offset_x: 88, label: 空格}
-      - {click: Menu, swipe_up: '?', swipe_down: '!', label_symbol: '？！'}   # 方案菜单；上滑 ？　下滑 ！
+      - {click: Menu, swipe_up: '?', swipe_down: '!', hint: '！', label_symbol: '？'}   # 方案菜单；键顶 ？　右下角 ！
 
   # === 西文全键盘（常驻栏 中/En 或 t9_en 自带的键进入）===
   preset_keyboards/t9_en:

@@ -67,7 +67,7 @@ patch:
       - {click: k, long_click: '*'}
       - {click: l, long_click: '(){Left}'}
       - {width: 5}
-      - {click: Shift_L, width: 15}
+      - {click: Shift_L, long_click: Shift_L, width: 15}   # 长按锁定大写
       - {click: z, long_click: '`'}
       - {click: x, long_click: cut}
       - {click: c, long_click: copy}

@@ -19,10 +19,10 @@ patch:
     keyboard_height: 280
     lock: true
     keys:
-      - {click: ',', long_click: Keyboard_symbols, label: '，'}
+      - {click: ',', long_click: '.', swipe_up: '?', swipe_down: '!', label: '，', label_symbol: '。？！'}
       - {click: '2', label: ABC}
       - {click: '3', label: DEF}
-      - {click: Keyboard_symbols, label: 符}
+      - {click: Keyboard_symbols, label: 符号}
       - {click: '4', label: GHI}
       - {click: '5', label: JKL}
       - {click: '6', label: MNO}

@@ -5,6 +5,61 @@
 > **这套配置是按「左手惯用」来排的**：回车（发送）放在左下角，拇指不用跨到右边；
 > 空格键缩短，左右各放一个常用标点；等等。详见下面的「左手布局」。
 
+## 交给 Agent 装（配置 + 带语音的 App）
+
+配套的 App 是 [trime](https://github.com/FGG100y/trime) 的 `feature/on-device-voice-input`
+分支（带**完全在本机跑**的语音输入，不需要联网权限）。整套东西都可以用一段话交给编码
+Agent（Claude Code / Codex / pi 等）代劳：它会自己 clone、构建、`adb install`、推配置，
+再把**只有人能在手机上做**的几步列成清单交给你。
+
+把下面整段复制给 Agent（在哪个目录下运行都行）：
+
+```text
+帮我在手机上装好「同文输入法（左手九宫格）」和它的本机语音输入：
+
+1. clone 两个仓库：
+   - 配置：trime-config（仓库地址：https://github.com/FGG100y/trime-config）
+   - App：https://github.com/FGG100y/trime ，用 feature/on-device-voice-input 分支
+2. App 侧先跑 script/fetch-sherpa-onnx.sh，再用 BUILD_ABI=arm64-v8a 构建 debug 包
+   （别编 armeabi-v7a，当前会挂）
+3. adb install -r 装 debug 包；然后 PKG=com.osfans.trime.debug script/push.sh，把 rime/
+   推到 /sdcard/Android/data/com.osfans.trime.debug/files/rime/
+4. 最后把「只有我能在手机上做」的步骤列成清单给我，我自己做
+
+约束：adb 只许操作这一个 App（安装 / 启动 / 看日志 / 截图），不要替我点别的 App、
+不要动系统设置、不要在设备上模拟操作；需要真机验证的地方写清单给我。
+```
+
+### Agent 能自己做完的
+
+- clone 两个仓库，切到 `feature/on-device-voice-input`。
+- `script/fetch-sherpa-onnx.sh` 拉原生库 → `BUILD_ABI=arm64-v8a ./gradlew :app:assembleDebug`。
+- `adb install -r` 装 debug 包（`com.osfans.trime.debug`）。
+- `PKG=com.osfans.trime.debug script/push.sh`：把 `rime/` 推到设备用户目录。
+- 想省事的话，也可以让它把语音模型解压到 `/sdcard/Download/`，省得你自己传大文件。
+
+### 只能你自己做的（Agent 应该把这份清单交给你）
+
+| 步骤 | 在哪里 |
+| --- | --- |
+| 启用并切到「同文输入法（debug）」 | 系统设置 → 语言和输入法（输入法只能由用户手动启用） |
+| 部署一次，生成 `t9.prism.bin` 等 | Trime 主界面 →「**部署**」 |
+| 导入语音模型（在系统文件选择器里选模型**文件夹**） | Trime 设置 → Local voice input → Import model |
+| 首次长按空格时授权录音 | 弹出来的授权框 |
+| 把 `Long press space` 设为 `Local voice input` | Trime 设置 → Local voice input（或 General 页的「长按空格」） |
+| 填自己的自定义短语 | 见下面「自定义短语（打码即出）」 |
+
+语音模型推荐 **SenseVoiceSmall**（~230 MB，中文好、自带标点）：
+[`sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17`](https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2)。
+支持的其它型号、体积、以及「哪几个 release 其实是方言微调、根本不带标点」这些坑，见 App
+仓库的 [`doc/voice-input.md`](https://github.com/FGG100y/trime/blob/feature/on-device-voice-input/doc/voice-input.md)。
+
+### 只想用配置，不想自己编译 App
+
+从 [trime releases](https://github.com/osfans/trime/releases)（或 F-Droid / Play）装官方版，
+再照下面「部署 / 恢复」手动放配置就行 —— 但**语音输入只有这个分支有**，官方版里只有
+「系统语音输入法」。
+
 ## 方案列表
 
 | 方案 | id | 说明 |
